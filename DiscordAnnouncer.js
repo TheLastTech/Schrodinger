@@ -28,7 +28,7 @@ export class DiscordAnnouncer {
             console.log(Old.displayName + " Is Still Playing " + Old.presence.game.name);
         }
         if (Old.presence.game && New.presence.game && !Old.presence.game.equals(New.presence.game)) {
-            console.log(Old.presence.game + " changed to  " + New.presence.game.name);
+            console.log(`${New.displayName} changed from {Old.presence.game} to ${New.presence.game.name}`);
         }
 
     }
