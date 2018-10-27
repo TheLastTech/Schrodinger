@@ -25,13 +25,31 @@ export class DiscordAnnouncer {
 
         }
         if (Old.presence.game && !New.presence.game) {
-            console.log(Old.displayName + " Is Still Playing " + Old.presence.game.name);
+
+            console.log(`${Old.displayName} Is Still 2Playing ${Old.presence.game.name}  `);
         }
-        if (Old.presence.game && New.presence.game && !Old.presence.game.equals(New.presence.game)) {
-            console.log(`${New.displayName} changed from ${Old.presence.game} to ${New.presence.game.name}`);
+        if (Old.presence.game && New.presence.game) {
+            if (!Old.presence.game.equals(New.presence.game)) {
+                if (Old.presence.game.timestamps && !New.presence.game.timestamps) {
+
+                    console.log(`${New.displayName} changed from ${Old.presence.game} to ${New.presence.game.name}  `);
+                }
+                if (Old.presence.game.timestamps && New.presence.game.timestamps && (!Old.presence.game.timestamps.end && !New.presence.game.timestamps.end)) {
+
+                    console.log(`${New.displayName} changed from ${Old.presence.game}   to ${New.presence.game.name}  `);
+                }
+
+
+            } else {
+
+
+                console.log(`${Old.displayName} Is Still Playing ${Old.presence.game.name}  `);
+            }
         }
 
     }
+
+
 
     BotReady() {
         this.Ready = true;
