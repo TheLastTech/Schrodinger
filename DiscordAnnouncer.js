@@ -21,12 +21,11 @@ export class DiscordAnnouncer {
     MemberUpdate(Old, New) {
 
         if (New.presence.game && !Old.presence.game) {
-            console.log(New.displayName + " Started "  + New.presence.game.name );
+            console.log(New.displayName + " Started " + New.presence.game.name);
 
         }
         if (Old.presence.game && !New.presence.game) {
-            console.log(New.presence.game.name + " Ended, Played for " );
-            console.log(New.presence.game.name + " Ended");
+            console.log(Old.displayName + " Is Still Playing " + Old.presence.game.name);
         }
         if (Old.presence.game && New.presence.game && !Old.presence.game.equals(New.presence.game)) {
             console.log(Old.presence.game + " changed to  " + New.presence.game.name);
