@@ -7,6 +7,6 @@ export default {
     Announce: (Status,DisplayName,Game,Url)=>{
         return `${DisplayName} is live ${Status} playing ${Game} at ${Url}`;
     },
-    AnnounceSpots :[''] //channel ids
-
+    AnnounceSpots :[''], //channel ids
+    PresenceAnnounceSpots:[''] //where to print mining data
 }
