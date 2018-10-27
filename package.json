@@ -19,5 +19,8 @@
     "bluebird": "^3.5.2",
     "discord.js": "^11.4.2",
     "twitch-api-v5": "^2.0.4"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
