@@ -21,34 +21,33 @@ export class DiscordAnnouncer {
     MemberUpdate(Old, New) {
 
         if (New.presence.game && !Old.presence.game) {
-            console.log(New.displayName + " Started " + New.presence.game.name);
+            this.AnnounceMonitor(`${New.user} Started ${New.presence.game.name}`);
 
         }
         if (Old.presence.game && !New.presence.game) {
 
-            console.log(`${Old.displayName} Is Still 2Playing ${Old.presence.game.name}  `);
+            this.AnnounceMonitor(`${Old.user} Is Still Playing ${Old.presence.game.name}  `);
         }
         if (Old.presence.game && New.presence.game) {
             if (!Old.presence.game.equals(New.presence.game)) {
                 if (Old.presence.game.timestamps && !New.presence.game.timestamps) {
 
-                    console.log(`${New.displayName} changed from ${Old.presence.game} to ${New.presence.game.name}  `);
+                    this.AnnounceMonitor(`${New.user} changed from ${Old.presence.game} to ${New.presence.game.name}  `);
                 }
                 if (Old.presence.game.timestamps && New.presence.game.timestamps && (!Old.presence.game.timestamps.end && !New.presence.game.timestamps.end)) {
 
-                    console.log(`${New.displayName} changed from ${Old.presence.game}   to ${New.presence.game.name}  `);
+                    this.AnnounceMonitor(`${New.user} changed from ${Old.presence.game}   to ${New.presence.game.name}  `);
                 }
 
 
             } else {
 
 
-                console.log(`${Old.displayName} Is Still Playing ${Old.presence.game.name}  `);
+                this.AnnounceMonitor(`${Old.user} Is Still Playing ${Old.presence.game.name}  `);
             }
         }
 
     }
-
 
 
     BotReady() {
@@ -56,6 +55,17 @@ export class DiscordAnnouncer {
         console.log(`Logged in as ${this.client.user.tag}!`);
         this.PendingMessages.forEach(A => {
             this.Announce(A);
+        })
+
+    }
+
+    AnnounceMonitor(Announcement) {
+
+        Config.PresenceAnnounceSpots.forEach(Spot => {
+            let Channel = this.client.channels.get(Spot);
+            if (!Channel) return;
+            Channel.send(Announcement);
+
         })
 
     }
